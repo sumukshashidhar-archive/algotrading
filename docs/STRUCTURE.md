@@ -1,0 +1,6 @@
+# File Structure
+
+```
++-- src
+|   +-- interface
+```
