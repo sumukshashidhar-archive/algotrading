@@ -5,9 +5,9 @@ A simple algorithmic trading system.
 Detailed documentation regarding this project can be found [here](https://sumukshashidhar.com/algotrading).
 
 # Contributions
-Please read [CONTRIBUTING](docs/CONTRIBUTING.md) for details on how to create PRs.
+Please read [CONTRIBUTING](CONTRIBUTING.md) for details on how to create PRs.
 
 
 # Tasks
 
-For a list of tasks that are pending, please read the [tasklist](docs/TASKS.md)
+For a list of tasks that are pending, please read the [tasklist](TASKS.md)
