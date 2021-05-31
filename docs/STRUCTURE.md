@@ -1,6 +1,18 @@
 # File Structure
 
 ```
++-- .gitignore (files to be ignored by git)
++-- LICENSE (GPLv3 License)
++-- README.md (README file)
++-- docs (documentation)
+|   +-- _config.yml (github pages configuration)
+|   +-- ACTIVE.md (list of active projects)
+|   +-- CONTRIBUTING.md (contribution guidelines)
+|   +-- CONVENTION.md (project conventions)
+|   +-- INDEX.md (gh pages homepage)
+|   +-- RUN.md (installation/running instructions)
+|   +-- STRUCTURE.md (project structure)
+|   +-- TASKS.md (list of pending tasks)
 +-- src (root of our codebase)
 |   +-- interface (code to link with the broker. python) 
 |   +-- backtesting (code to run backtests for specified datasets. java)
