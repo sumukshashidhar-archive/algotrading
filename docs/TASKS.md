@@ -1,4 +1,4 @@
 # Active Tasks
 
-- [ ] Sentiment Analysis of news articles 
-- [ ] Backtesting Application
+- [ ] Get test java script running with JavaScript.
+- [ ] Add language specific convention instructions.
