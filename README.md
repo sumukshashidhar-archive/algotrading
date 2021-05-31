@@ -6,3 +6,8 @@ Detailed documentation regarding this project can be found [here](https://sumuks
 
 # Contributions
 Please read [CONTRIBUTING](docs/CONTRIBUTING.md) for details on how to create PRs.
+
+
+# Tasks
+
+For a list of tasks that are pending, please read the [tasklist](docs/TASKS.md)
