@@ -54,7 +54,7 @@ else:
 
 dir_maker()
 for i in instrument_list:
-    with open(f"./realtime/price/{i}.csv", "w+") as f:
+    with open(f"./realtime/prices/{i}.csv", "w+") as f:
         f.write()
     with open(f"./realtime/depth/{i}.csv", "w+") as f:
         f.write()
@@ -66,7 +66,7 @@ def processor(data):
 
     for i in data:
         print(f'{strdate}:{i["instrument_token"]}:{i["last_price"]}')
-        with open(f'./realtime/price/{i["instrument_token"]}.csv', 'a+') as f:
+        with open(f'./realtime/prices/{i["instrument_token"]}.csv', 'a+') as f:
             f.write(f"{strdate},{i['last_price']},{i['last_quantity']},{i['buy_quantity']},{i['sell_quantity']},{i['average_price']},{i['volume']},{i['change']}\n")
         with open(f'./realtime/depth/{i["instrument_token"]}.csv', 'a+') as f:
             for j in i['depth']['sell']:
