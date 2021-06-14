@@ -16,8 +16,8 @@ load_dotenv()
 WEBDRIVER_LOCATION = os.getenv("WEBDRIVER_LOCATION")
 
 # make a virtual display for docker
-# display = Display(visible=0, size=(800, 600))
-# display.start()
+display = Display(visible=0, size=(800, 600))
+display.start()
 
 def get_token(api_key, api_key_secret, username, password, pin):
     """
