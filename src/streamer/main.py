@@ -64,10 +64,16 @@ def processor(data):
         with open(f'./realtime/prices/{i["instrument_token"]}.csv', 'a+') as f:
             f.write(f"{strdate},{i['last_price']},{i['last_quantity']},{i['buy_quantity']},{i['sell_quantity']},{i['average_price']},{i['volume']},{i['change']}\n")
         with open(f'./realtime/depth/{i["instrument_token"]}.csv', 'a+') as f:
-            for j in i['depth']['sell']:
-                f.write(f"{strdate},S,{j['price']},{j['orders']},{j['quantity']}\n")
-            for j in i['depth']['buy']:
-                f.write(f"{strdate},S,{j['price']},{j['orders']},{j['quantity']}\n")
+            try: 
+                for j in i['depth']['sell']:
+                    f.write(f"{strdate},S,{j['price']},{j['orders']},{j['quantity']}\n")
+            except:
+                pass
+            try:
+                for j in i['depth']['buy']:
+                    f.write(f"{strdate},S,{j['price']},{j['orders']},{j['quantity']}\n")
+            except:
+                pass
     
     try:
         if (time.time() - times[-1]) > 3600:
