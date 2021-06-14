@@ -42,7 +42,7 @@ def dir_maker():
 
 def commit():
     strtime = datetime.now(timezone("UTC")).astimezone(timezone("Asia/Kolkata")).strftime("%Y-%m-%d %H:%M:%S")
-    os.system(f'cd realtime && git add . && git commit -m " {strtime} Backup" && git push"')
+    os.system(f'cd realtime && git add . && git commit -m " {strtime} Backup" && git push')
     return
 
 # download data repository if it doesn't exist and test it.
