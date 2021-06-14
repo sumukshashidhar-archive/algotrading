@@ -60,7 +60,7 @@ def processor(data):
     strdate = datetime.now(timezone('UTC')).astimezone(timezone('Asia/Kolkata')).strftime("%Y-%m-%d %H:%M:%S")
 
     for i in data:
-        print(f'{strdate}:{i["instrument_token"]}:{i["last_price"]}')
+        # print(f'{strdate}:{i["instrument_token"]}:{i["last_price"]}')
         with open(f'./realtime/prices/{i["instrument_token"]}.csv', 'a+') as f:
             f.write(f"{strdate},{i['last_price']},{i['last_quantity']},{i['buy_quantity']},{i['sell_quantity']},{i['average_price']},{i['volume']},{i['change']}\n")
         with open(f'./realtime/depth/{i["instrument_token"]}.csv', 'a+') as f:
