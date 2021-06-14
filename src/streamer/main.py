@@ -41,7 +41,7 @@ def dir_maker():
         os.system('mkdir ./realtime/prices')
 
 def commit():
-    os.system(f'cd realtime && git add . && git commit -m "{datetime.now(timezone("UTC")).astimezone(timezone("Asia/Kolkata")).strftime("%Y-%m-%d %H:%M:%S")} Backup && git push"')
+    os.system(f'cd realtime && git add . && git commit -m "{datetime.now(timezone("UTC")).astimezone(timezone("Asia/Kolkata")).strftime("%Y-%m-%d %H:%M:%S")} Backup" && git push"')
     return
 
 # download data repository if it doesn't exist and test it.
