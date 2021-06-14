@@ -109,7 +109,7 @@ def on_ticks(ws, ticks):
     # Callback to receive ticks.
     data = ticks
     threading.Thread(target=processor, args=(data,)).start()
-    logging.debug("Ticks: {}".format(ticks))
+    # logging.debug("Ticks: {}".format(ticks))
 
 
 def on_connect(ws, response):
