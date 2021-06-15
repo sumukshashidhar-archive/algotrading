@@ -14,6 +14,7 @@ import threading
 import logging
 import time
 import tqdm
+import pandas as pd
 # logging.basicConfig(level=logging.DEBUG)
 ## FILE IMPORTS
 from subroutines.get_token import get_token
@@ -40,7 +41,24 @@ def dir_maker():
     else:
         os.system('mkdir ./realtime/prices')
 
+def compress():
+    for filename in os.listdir('./realtime/prices'):
+        if filename.endswith('.csv'):
+            fil = os.path.join('./realtime/prices', filename)
+            df = pd.read_csv(fil, header=None)
+            df.drop_duplicates(subset=[1, 2, 3, 4, 5, 6, 7], keep='last')
+            df.to_csv(fil, header=False, index=False)
+    for filename in os.listdir('./realtime/depth'):
+        if filename.endswith('.csv'):
+            fil = os.path.join('./realtime/prices', filename)
+            df = pd.read_csv(fil, header=None)
+            df.drop_duplicates(subset=[1, 2, 3, 4], keep='last')
+            df.to_csv(fil, header=False, index=False)
+    return
+    
+
 def commit():
+    compress()
     strtime = datetime.now(timezone("UTC")).astimezone(timezone("Asia/Kolkata")).strftime("%Y-%m-%d %H:%M:%S")
     os.system(f'cd realtime && git add . && git commit -m " {strtime} Backup" && git push')
     return
@@ -77,7 +95,7 @@ def processor(data):
                 pass
     
     try:
-        if (time.time() - times[-1]) > 3600:
+        if (time.time() - times[-1]) > 36000:
             commit()
             return
         else:
