@@ -14,7 +14,6 @@ import threading
 import logging
 import time
 import pandas as pd
-import tqdm
 # logging.basicConfig(level=logging.DEBUG)
 ## FILE IMPORTS
 from subroutines.get_token import get_token
@@ -57,34 +56,8 @@ def dir_maker():
     else:
         os.system('mkdir ./realtime/prices')
 
-def compress():
-    logging.debug("Running Compression")
-    before = size('./realtime')
-    for filename in tqdm.tqdm(os.listdir('./realtime/prices/')):
-        if filename.endswith('.csv'):
-            try:
-                fil = os.path.join('./realtime/prices/', filename)
-                df = pd.read_csv(fil, header=None)
-                df.drop_duplicates(subset=[1, 2, 3, 4, 5, 6, 7], keep='last')
-                df.to_csv(fil, header=False, index=False)
-            except:
-                logging.error(f"Failed to compress file: {filename}")
-    for filename in tqdm.tqdm(os.listdir('./realtime/depth/')):
-        if filename.endswith('.csv'):
-            try:    
-                fil = os.path.join('./realtime/depth/', filename)
-                df = pd.read_csv(fil, header=None)
-                df.drop_duplicates(subset=[1, 2, 3, 4], keep='last')
-                df.to_csv(fil, header=False, index=False)
-            except:
-                logging.error(f"Failed to compress file: {filename}")
-    after = size('./realtime')
-    print(f"{((after - before)/before)*100}% reduction in size of folder after compression.")
-    return
-    
 
 def commit():
-    compress()
     strtime = datetime.now(timezone("UTC")).astimezone(timezone("Asia/Kolkata")).strftime("%Y-%m-%d %H:%M:%S")
     os.system(f'cd realtime && git add . && git commit -m " {strtime} Backup" && git push')
     return
@@ -122,7 +95,7 @@ def processor(data):
                 pass
 
     if (time.time() - times[-1]) > 36000:
-        commit()
+        threading.Thread(target=commit).start()
         times.append(time.time())
         if len(times) > 5000:
             times = times[-3:]
