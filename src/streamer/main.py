@@ -93,7 +93,7 @@ def processor(data):
                 pass
             try:
                 for j in i['depth']['buy']:
-                    f.write(f"{strdate},S,{j['price']},{j['orders']},{j['quantity']}\n")
+                    f.write(f"{strdate},B,{j['price']},{j['orders']},{j['quantity']}\n")
             except:
                 pass
 
