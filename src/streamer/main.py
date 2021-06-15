@@ -30,6 +30,22 @@ LOGIN = os.getenv("LOGIN")
 PASSW = os.getenv("PASSW")
 PIN = os.getenv("PIN")
 
+def size(path):
+   
+    #initialize the size
+    total_size = 0
+    
+    #use the walk() method to navigate through directory tree
+    for dirpath, dirnames, filenames in os.walk(path):
+        for i in filenames:
+            
+            #use join to concatenate all the components of path
+            f = os.path.join(dirpath, i)
+            
+            #use getsize to generate size in bytes and add it to the total size
+            total_size += os.path.getsize(f)
+    return total_size
+
 
 def dir_maker():
     if os.path.isdir('./realtime/depth'):
@@ -42,6 +58,7 @@ def dir_maker():
         os.system('mkdir ./realtime/prices')
 
 def compress():
+    before = size('./realtime')
     for filename in os.listdir('./realtime/prices'):
         if filename.endswith('.csv'):
             fil = os.path.join('./realtime/prices', filename)
@@ -54,6 +71,8 @@ def compress():
             df = pd.read_csv(fil, header=None)
             df.drop_duplicates(subset=[1, 2, 3, 4], keep='last')
             df.to_csv(fil, header=False, index=False)
+    after = size('./realtime')
+    print(f"{((after - before)/before)*100}% reduction in size of folder after compression.")
     return
     
 
