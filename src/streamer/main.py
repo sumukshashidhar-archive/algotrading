@@ -58,15 +58,15 @@ def dir_maker():
 
 def compress():
     before = size('./realtime')
-    for filename in os.listdir('./realtime/prices'):
+    for filename in os.listdir('./realtime/prices/'):
         if filename.endswith('.csv'):
-            fil = os.path.join('./realtime/prices', filename)
+            fil = os.path.join('./realtime/prices/', filename)
             df = pd.read_csv(fil, header=None)
             df.drop_duplicates(subset=[1, 2, 3, 4, 5, 6, 7], keep='last')
             df.to_csv(fil, header=False, index=False)
-    for filename in os.listdir('./realtime/depth'):
+    for filename in os.listdir('./realtime/depth/'):
         if filename.endswith('.csv'):
-            fil = os.path.join('./realtime/prices', filename)
+            fil = os.path.join('./realtime/depth/', filename)
             df = pd.read_csv(fil, header=None)
             df.drop_duplicates(subset=[1, 2, 3, 4], keep='last')
             df.to_csv(fil, header=False, index=False)
