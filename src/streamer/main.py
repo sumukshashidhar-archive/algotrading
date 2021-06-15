@@ -94,6 +94,7 @@ dir_maker()
 
 
 def processor(data):
+    global times
     # make the string format for the date
     strdate = datetime.now(timezone('UTC')).astimezone(timezone('Asia/Kolkata')).strftime("%Y-%m-%d %H:%M:%S")
 
