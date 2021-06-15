@@ -29,6 +29,8 @@ LOGIN = os.getenv("LOGIN")
 PASSW = os.getenv("PASSW")
 PIN = os.getenv("PIN")
 
+os.system('cd realtime && git pull --force')
+
 def size(path):
    
     #initialize the size
