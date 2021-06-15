@@ -18,7 +18,7 @@ import pandas as pd
 ## FILE IMPORTS
 from subroutines.get_token import get_token
 
-times = []
+times = [time.time()]
 # DOTENV LOADING
 load_dotenv()
 
@@ -57,6 +57,7 @@ def dir_maker():
         os.system('mkdir ./realtime/prices')
 
 def compress():
+    logging.debug("Running Compression")
     before = size('./realtime')
     for filename in os.listdir('./realtime/prices/'):
         if filename.endswith('.csv'):
@@ -111,17 +112,12 @@ def processor(data):
                     f.write(f"{strdate},S,{j['price']},{j['orders']},{j['quantity']}\n")
             except:
                 pass
-    
-    try:
-        if (time.time() - times[-1]) > 36000:
-            commit()
-            return
-        else:
-            return
-    except:
+
+    if (time.time() - times[-1]) > 36000:
         commit()
         times.append(time.time())
         return
+
 
 # load access token from a temp file if it exists. else, set the value to None
 try:
