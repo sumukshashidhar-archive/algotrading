@@ -18,7 +18,7 @@ import pandas as pd
 ## FILE IMPORTS
 from subroutines.get_token import get_token
 
-times = [time.time()]
+times = [(time.time()-40000)]
 # DOTENV LOADING
 load_dotenv()
 
