@@ -116,6 +116,8 @@ def processor(data):
     if (time.time() - times[-1]) > 36000:
         commit()
         times.append(time.time())
+        if len(times) > 5000:
+            times = times[-3:]
         return
 
 
