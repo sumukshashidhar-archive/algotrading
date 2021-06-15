@@ -30,6 +30,7 @@ PASSW = os.getenv("PASSW")
 PIN = os.getenv("PIN")
 
 os.system('cd realtime && git pull --force')
+os.system('rm __TOKEN_STORE.txt')
 
 def size(path):
    
