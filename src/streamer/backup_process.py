@@ -39,4 +39,4 @@ for filename in os.listdir(REALTIME):
             df.to_csv(writefile, header=False, mode='a')
         except Exception as e:
             print(e)
-            print(filename)
+            print(f'{filename}. Error is {e}')
