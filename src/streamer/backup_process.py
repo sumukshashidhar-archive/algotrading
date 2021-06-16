@@ -32,7 +32,7 @@ for filename in os.listdir(REALTIME):
     if filename.endswith('.csv'):
         try:
             df = pd.DataFrame(pd.read_csv(os.path.join(REALTIME, filename), header=None, index_col=0, parse_dates=True))[1].resample('1min').ohlc().dropna().drop_duplicates(subset=['open', 'high', 'low', 'close'], keep='last')
-            writefile = os.path.join(RESAMPLED, lookup[filename[:-4]]) + '.csv'
+            writefile = os.path.join(RESAMPLED, lookup[int(filename[:-4])]) + '.csv'
             if not os.path.isfile(writefile):
                 with open(writefile, 'w+') as f:
                     f.write('')
