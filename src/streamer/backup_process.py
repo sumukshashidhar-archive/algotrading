@@ -11,6 +11,8 @@ PICKLE_FILE = "data.pkl"
 import pandas as pd
 import os
 import pickle
+import datetime
+from pytz import timezone
 
 # check if the repository exists, and if it does not, clone it down.
 if not os.path.isdir(RESAMPLED):
@@ -40,3 +42,8 @@ for filename in os.listdir(REALTIME):
         except Exception as e:
             print(e)
             print(f'{filename}. Error is {e}. Real file is {writefile}')
+
+# once we're done with this process, we have to go to the directory itself and back it all up
+strtime = datetime.now(timezone("UTC")).astimezone(timezone("Asia/Kolkata")).strftime("%Y-%m-%d %H:%M:%S")
+os.system(f'cd nse-data/ && git add . && git commit -m "daily data: {strtime}" && git push')
+exit()
