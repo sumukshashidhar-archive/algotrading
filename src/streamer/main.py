@@ -97,7 +97,7 @@ def processor(data):
             except:
                 pass
 
-    if (time.time() - times[-1]) > 36000:
+    if (time.time() - times[-1]) > 3600:
         threading.Thread(target=commit).start()
         times.append(time.time())
         if len(times) > 5000:
