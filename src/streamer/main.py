@@ -14,12 +14,19 @@ import threading
 import logging
 import time
 import pandas as pd
+
+# ENABLE LOGGING FOR DEBUGGING ONLY
 # logging.basicConfig(level=logging.DEBUG)
-## FILE IMPORTS
+
+
+## FILE BASED MODULE IMPORTS
 from subroutines.get_token import get_token
 
+# time array for backups
 times = [(time.time()-40000)]
 # DOTENV LOADING
+
+# load env vars and tokens
 load_dotenv()
 
 ## LOADING ENV VARS FROM .env
@@ -29,11 +36,14 @@ LOGIN = os.getenv("LOGIN")
 PASSW = os.getenv("PASSW")
 PIN = os.getenv("PIN")
 
+# update all data to github repository
 os.system('cd realtime && git pull --force')
 os.system('rm __TOKEN_STORE.txt')
 
 def size(path):
-   
+   """
+   Get the total size of a given directory.
+   """
     #initialize the size
     total_size = 0
     
@@ -50,6 +60,9 @@ def size(path):
 
 
 def dir_maker():
+   """
+   Function to generate a directory if it doesn't exist
+   """
     if os.path.isdir('./realtime/depth'):
         pass
     else:
@@ -61,6 +74,9 @@ def dir_maker():
 
 
 def commit():
+   """
+   Backing up realtime exchange data to github
+   """
     strtime = datetime.now(timezone("UTC")).astimezone(timezone("Asia/Kolkata")).strftime("%Y-%m-%d %H:%M:%S")
     os.system(f'cd realtime && git add . && git commit -m " {strtime} Backup" && git push')
     return
