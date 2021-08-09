@@ -1,3 +1,6 @@
+"""
+Script invoked upon cronjob to kill all python processess.
+"""
 import os
 import datetime
 import time
